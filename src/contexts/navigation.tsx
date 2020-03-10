@@ -21,8 +21,13 @@ const initialState: State = {
   }]
 }
 
+export type ScreenPayloadWithOrder = ScreenPayload & {
+  order: number;
+}
+
 export type NavigationState = State & {
   currentScreen: ScreenPayload | undefined;
+  stackWithOrder: Array<ScreenPayloadWithOrder>;
 }
 
 const NavigationStateContext = React.createContext<NavigationState>(initialState as NavigationState)
@@ -51,6 +56,9 @@ export function NavigationProvider({ children }: NavigationProviderProps): React
     return {
       stack: state.stack,
       currentScreen: state.stack.length > 0 ? state.stack.slice(-1)[0] : undefined,
+      stackWithOrder: state.stack.map((item, index) => Object.assign({}, item, {
+        order: index,
+      }))
     }
   }, [state])
   return (
