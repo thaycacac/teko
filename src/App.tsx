@@ -1,7 +1,7 @@
 import React from 'react'
-import { ThemeProvider } from 'styled-components'
-import { ProductListing } from './containers/ProductListing'
-import { DefaultTheme } from 'styled-components'
+import { ThemeProvider, DefaultTheme } from 'styled-components'
+import { NavigationProvider } from './contexts/navigation'
+import { Router } from './Router'
 
 const theme: DefaultTheme = {
   colors: {
@@ -21,7 +21,9 @@ const theme: DefaultTheme = {
 const App: React.FunctionComponent = () => {
   return (
     <ThemeProvider theme={theme}>
-      <ProductListing />
+      <NavigationProvider>
+        <Router />
+      </NavigationProvider>
     </ThemeProvider>
   )
 }

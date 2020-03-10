@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useNavigationDispatch } from '../../contexts/navigation'
 
 const Container = styled.div`
   height: 44pt;
@@ -9,13 +10,15 @@ const Container = styled.div`
   display: flex;
   align-items: center;
 `
-const BackIconWrapper = styled.div`
+const BackIconWrapper = styled.button`
   width: 24pt;
   height: 24pt;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 11pt;
+  border: none;
+  background-color: transparent;
 `
 const InputWrapper = styled.div`
   flex: 1;
@@ -36,13 +39,16 @@ const Input = styled.input`
   }
 `
 
-export const NavigationBar: React.FunctionComponent = () => (
-  <Container>
-    <BackIconWrapper>
-      <img src="/public/images/arrowBack.png" srcSet="/public/images/arrowBack@2x.png 2x, /public/images/arrowBack@3x.png 3x" />
-    </BackIconWrapper>
-    <InputWrapper>
-      <Input placeholder="Nhập tên, mã sản phẩm" />
-    </InputWrapper>
-  </Container>
-)
+export const NavigationBar: React.FunctionComponent = () => {
+  const dispatch = useNavigationDispatch()
+  return (
+    <Container>
+      <BackIconWrapper onClick={() => dispatch({ type: 'POP' })}>
+        <img src="/public/images/arrowBack.png" srcSet="/public/images/arrowBack@2x.png 2x, /public/images/arrowBack@3x.png 3x" />
+      </BackIconWrapper>
+      <InputWrapper>
+        <Input placeholder="Nhập tên, mã sản phẩm" />
+      </InputWrapper>
+    </Container>
+  )
+}
