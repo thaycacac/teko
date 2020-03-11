@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CartIcon CartIcon renders correctly 1`] = `
+.c0 {
+  width: 24pt;
+  height: 24pt;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+}
+
+<button
+  className="c0"
+>
+  <img
+    src="/public/images/CartOutlined.png"
+    srcSet="/public/images/CartOutlined@2x.png 2x, /public/images/CartOutlined@3x.png 3x"
+  />
+</button>
+`;
