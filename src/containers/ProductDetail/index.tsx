@@ -1,61 +1,45 @@
-import React from 'react'
+import React, { useEffect, useCallback, useState } from 'react'
 import styled from 'styled-components'
+import { get, Product } from '../../repositories/products'
 import { NavigationBar } from '../../components/NavigationBar'
-import { useNavigationDispatch } from '../../contexts/navigation'
 import { CartIcon } from '../../components/CartIcon'
+import { ProductNavigationTitle } from '../../components/ProductNavigationTitle'
+interface ProductDetailProps {
+  sku: string;
+}
 
-const DummyButton = styled.button`
-  width: 100%;
-  height: 100px;
-`
-const TitleContainer = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  h3, p {
-    margin-bottom: 0;
-  }
+const Wrapper = styled.div`
+  overflow-y: auto;
+  height: calc(100% - 44pt);
+  background-color: ${props => props.theme.colors.paleGrey};
 `
 
-const NavigationTitle = styled.h3``
+export const ProductDetail: React.FunctionComponent<ProductDetailProps> = ({ sku }: ProductDetailProps) => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [product, setProduct] = useState<Product | undefined>()
+  const fetchProduct = useCallback(async () => {
+    setIsLoading(true)
+    const data = await get(sku)
+    setProduct(data)
+    setIsLoading(false)
+  }, [sku])
 
-const NavigationSubTitle = styled.p`
-color: ${props => props.theme.colors.tomato};
-`
-
-export const ProductDetail: React.FunctionComponent = () => {
-  const dispatch = useNavigationDispatch()
+  useEffect(() => {
+    fetchProduct()
+  }, [sku])
   return (
     <>
       <NavigationBar
         variant="secondary"
         rightNode={<CartIcon />}
       >
-        <TitleContainer>
-          <NavigationTitle>
-            Bo vi xu ly
-          </NavigationTitle>
-          <NavigationSubTitle>
-            10.420.000 d
-          </NavigationSubTitle>
-        </TitleContainer>
+        {product && (
+          <ProductNavigationTitle product={product} />
+        )}
       </NavigationBar>
-      <DummyButton
-        onClick={
-          (): void => dispatch({
-            type: 'PUSH',
-            payload: {
-              name: 'PRODUCT_DETAIL',
-              payload: {
-                productId: 'productid',
-              }
-            }
-          })}
-        >
-          Next
-        </DummyButton>
+      <Wrapper>
+        Hello worl
+      </Wrapper>
     </>
   )
 

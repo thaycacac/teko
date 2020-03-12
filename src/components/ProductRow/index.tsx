@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import styled from 'styled-components'
 import { Product } from '../../repositories/products'
 import { thoundsandDelimiter } from '../../helpers/number'
+import Sup from '../Styled/Sup'
 
 interface ProductRowProps {
   product: Product;
@@ -80,10 +81,6 @@ const DiscountValue = styled.div`
 const OriginalPrice = styled.span`
   color: ${props => props.theme.colors.coolGrey};
   text-decoration: line-through;
-`
-const Sup = styled.sup`
-top: -.3em;
-left: .1em;
 `
 
 export const ProductRow: React.FunctionComponent<ProductRowProps> = ({ product, onClick }: ProductRowProps) => {

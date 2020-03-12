@@ -73,3 +73,15 @@ export function search(params: ProductSearchParams): Promise<ProductSearchRespon
     return Promise.resolve(data as ProductSearchResponse)
   })
 }
+
+export function get(sku: string): Promise<Product> {
+  return api.get(`/products/${sku}`, {
+    channel: 'pv_online',
+    terminal: 'phongvu',
+  }).then(({ ok, data, problem }) => {
+    if (!ok) {
+      return Promise.reject(problem)
+    }
+    return Promise.resolve((data as any).result.product as Product)
+  })
+}

@@ -21,7 +21,7 @@ function renderScreen(screen: ScreenPayload): React.ReactNode {
     case 'PRODUCT_LISTING':
       return <ProductListing />
     case 'PRODUCT_DETAIL':
-      return <ProductDetail />
+      return <ProductDetail sku={screen.payload.sku} />
     default:
       return null
   }
@@ -43,7 +43,8 @@ export const Router: React.FunctionComponent = () => {
       top: 0,
       bottom: 0,
       width,
-      left: stackWithOrder.length > 1 ? item.order === 0 ? -width : width : 0
+      left: stackWithOrder.length > 1 ? item.order === 0 ? -width : width : 0,
+      zIndex: 9000 + item.order,
     }),
     enter: { left: 0 },
     leave: (item: ScreenPayloadWithOrder) => ({
