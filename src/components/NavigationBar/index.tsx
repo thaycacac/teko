@@ -20,6 +20,7 @@ const Container = styled.div<ContainerProps>`
         `
     }
   }}
+  border-bottom: 1px solid ${props => props.theme.colors.paleGrey};
   padding: 8pt 11pt;
   display: flex;
   align-items: center;

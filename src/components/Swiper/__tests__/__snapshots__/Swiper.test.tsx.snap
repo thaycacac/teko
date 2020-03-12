@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Swiper Swiper renders correctly 1`] = `
+<div
+  className="swiper-container"
+>
+  <div
+    className="swiper-wrapper"
+  >
+    <div
+      className="swiper-slide"
+    >
+      Child 1
+    </div>
+    <div
+      className="swiper-slide"
+    >
+      Child 2
+    </div>
+  </div>
+</div>
+`;

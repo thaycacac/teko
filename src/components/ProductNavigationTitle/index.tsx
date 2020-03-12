@@ -15,7 +15,9 @@ const TitleContainer = styled.div`
   }
 `
 
-const NavigationTitle = styled.h5``
+const NavigationTitle = styled.h5`
+font-size: 13pt;
+`
 
 const NavigationSubTitle = styled.p`
   color: ${props => props.theme.colors.tomato};
