@@ -7,7 +7,7 @@ export interface ProductSearchParams {
   saleStatuses?: string;
   _sort?: string;
   _order?: 'asc' | 'desc';
-  _page?: number;
+  _page: number;
   _limit?: number;
   publishStatus?: boolean;
   q?: string;

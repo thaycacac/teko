@@ -88,7 +88,7 @@ left: .1em;
 
 export const ProductRow: React.FunctionComponent<ProductRowProps> = ({ product, onClick }: ProductRowProps) => {
   const computedProduct = useMemo<ComputedProduct>(() => {
-    let displayImage = '/public/images/Thumnail.png'
+    let displayImage = '/public/images/Thumbnail.png'
     if (product.images.length > 0) {
       const priorityImages = product.images.sort((a, b) => a.priority - b.priority)
       displayImage = priorityImages[0].url
@@ -122,10 +122,13 @@ export const ProductRow: React.FunctionComponent<ProductRowProps> = ({ product, 
       <ProductImage src={computedProduct.displayImage} />
       <ProductInfo>
         <ProductName>{computedProduct.displayName}</ProductName>
-        <ProductPrice>
-          {thoundsandDelimiter(computedProduct.price.sellPrice)}
-          <Sup>đ</Sup>
-        </ProductPrice>
+        {computedProduct.price.sellPrice && (
+          <ProductPrice>
+            {thoundsandDelimiter(computedProduct.price.sellPrice)}
+            <Sup>đ</Sup>
+          </ProductPrice>
+        )}
+
         {computedProduct.promotion && (
           <PromotionPrice>
             <OriginalPrice>

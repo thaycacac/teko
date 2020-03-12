@@ -1,14 +1,13 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState, ChangeEvent } from 'react'
 import styled from 'styled-components'
+import debounce from 'lodash.debounce'
 import { search, ProductSearchParams, Product } from '../../repositories/products'
 import { NavigationBar } from '../../components/NavigationBar'
+import { ScrollContainer } from '../../components/ScrollContainer'
 import { useNavigationDispatch } from '../../contexts/navigation'
 import ProductRow from '../../components/ProductRow'
 
-const ScrollWrapper = styled.div`
-  overflow-y: auto;
-  height: calc(100% - 44pt);
-`
+
 const InputWrapper = styled.div`
   flex: 1;
   background-color: ${props => props.theme.colors.white};
@@ -33,20 +32,35 @@ const Input = styled.input`
 const SearchIconWrapper = styled.div`
   margin-right: 2pt;
 `
-
 export const ProductListing: React.FunctionComponent = () => {
   const dispatch = useNavigationDispatch()
-  const [page, setPage] = useState<number>(1)
-  const [displayedProducts, setDisplayedProducts] = useState<Array<Product>>([])
+  const [query, setQuery] = useState<ProductSearchParams>({
+    _page: 1,
+    q: '',
+  })
 
+  const [isFetching, setIsFetching] = useState<boolean>(false)
+  const [displayedProducts, setDisplayedProducts] = useState<Array<Product>>([])
   const loadData = useCallback(async () => {
-    const { result } = await search({ page } as ProductSearchParams)
-    setDisplayedProducts(displayedProducts.concat(result.products))
-  }, [page])
+    setIsFetching(true)
+    const { result } = await search(query)
+    setDisplayedProducts(query._page === 1 ? result.products : displayedProducts.concat(result.products))
+    setIsFetching(false)
+  }, [query])
+
+  const updateKeyword = useCallback(debounce((keyword: string) => {
+    setQuery(prevState => {
+      return {
+        _page: prevState.q !== keyword ? 1 : prevState._page,
+        q: keyword,
+      }
+    })
+  }, 500), [])
 
   useEffect(() => {
     loadData()
-  }, [loadData, page])
+  }, [loadData, query])
+
   return (
     <>
       <NavigationBar>
@@ -54,10 +68,23 @@ export const ProductListing: React.FunctionComponent = () => {
           <SearchIconWrapper>
             <img src="/public/images/Search.png" srcSet="/public/images/Search@2x.png 2x, /public/images/Search@3x.png 3x" />
           </SearchIconWrapper>
-          <Input placeholder="Nhập tên, mã sản phẩm" />
+          <Input
+            placeholder="Nhập tên, mã sản phẩm"
+            onChange={(e: ChangeEvent<HTMLInputElement>): void => {
+              updateKeyword(e.target.value)
+            }}
+          />
         </InputWrapper>
       </NavigationBar>
-      <ScrollWrapper>
+      <ScrollContainer
+        isFetching={isFetching}
+        onLoadMore={(): void => {
+          setQuery(prevState => ({
+            ...prevState,
+            _page: prevState._page + 1,
+          }))
+        }}
+      >
         {displayedProducts.map(product => (
           <ProductRow
             key={product.sku}
@@ -74,7 +101,7 @@ export const ProductListing: React.FunctionComponent = () => {
             product={product}
           />
         ))}
-      </ScrollWrapper>
+      </ScrollContainer>
     </>
   )
 }
