@@ -37,6 +37,21 @@ export interface ProductStatus {
   sale: 'ngung_kinh_doanh' | 'hang_ban';
 }
 
+export interface ProductAttributeValue {
+  value: string;
+  optionId: number;
+}
+
+export interface ProductAttribute {
+  code: string;
+  values: Array<ProductAttributeValue>;
+}
+
+export interface ProductAttributeGroup {
+  name: string;
+  value: string;
+}
+
 export interface Product {
   sku: string;
   displayName: string;
@@ -44,6 +59,8 @@ export interface Product {
   promotionPrices: Array<ProductPromotionPrice>;
   images: Array<ProductImage>;
   status: ProductStatus;
+  attributes: Array<ProductAttribute>;
+  attributeGroups: Array<ProductAttributeGroup>;
 }
 
 export interface SearchResponseExtra {

@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
     list-style: none;
     padding: 0;
     z-index: 1;
+    background-color: #FFF;
   }
   .swiper-wrapper {
     position: relative;

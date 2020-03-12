@@ -16,6 +16,7 @@ const Container = styled.div`
   padding: 12pt;
   background-color: ${props => props.theme.colors.white};
   border-top: 1px solid ${props => props.theme.colors.paleGrey};
+  margin-bottom: 8pt;
 `
 const ProductTitle = styled.h3`
   font-size: 17pt;
