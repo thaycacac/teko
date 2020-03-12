@@ -52,6 +52,10 @@ export interface ProductAttributeGroup {
   value: string;
 }
 
+export interface ProductSaleCategory {
+  id: number;
+}
+
 export interface Product {
   sku: string;
   displayName: string;
@@ -61,6 +65,7 @@ export interface Product {
   status: ProductStatus;
   attributes: Array<ProductAttribute>;
   attributeGroups: Array<ProductAttributeGroup>;
+  saleCategories: Array<ProductSaleCategory>;
 }
 
 export interface SearchResponseExtra {
