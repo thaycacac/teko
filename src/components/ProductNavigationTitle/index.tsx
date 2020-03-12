@@ -17,6 +17,10 @@ const TitleContainer = styled.div`
 
 const NavigationTitle = styled.h5`
 font-size: 13pt;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+max-width: 200pt;
 `
 
 const NavigationSubTitle = styled.p`

@@ -8,6 +8,8 @@ import { ProductImages } from '../../components/ProductImages'
 import { ProductInfo } from '../../components/ProductInfo'
 import { ProductInfoTabs } from '../../components/ProductInfoTabs'
 import { SimilarProducts } from '../../components/SimilarProducts'
+import { AddToCartBar } from '../../components/AddToCartBar'
+import { useCartState, CartState } from '../../contexts/cart'
 
 interface ProductDetailProps {
   sku: string;
@@ -17,10 +19,12 @@ const Wrapper = styled.div`
   overflow-y: auto;
   height: calc(100% - 44pt);
   background-color: ${props => props.theme.colors.paleGrey};
+  padding-bottom: 50pt;
 `
 
 export const ProductDetail: React.FunctionComponent<ProductDetailProps> = ({ sku }: ProductDetailProps) => {
   const [isLoading, setIsLoading] = useState(false)
+  const cartState = useCartState()
   const [product, setProduct] = useState<Product | undefined>()
   const [similarProducts, setSimilarProducts] = useState<Array<Product>>([])
   const fetchProduct = useCallback(async () => {
@@ -67,6 +71,7 @@ export const ProductDetail: React.FunctionComponent<ProductDetailProps> = ({ sku
           {similarProducts.length > 0 && (
             <SimilarProducts products={similarProducts} />
           )}
+          <AddToCartBar cartState={cartState} product={product} />
         </Wrapper>
       )}
     </>

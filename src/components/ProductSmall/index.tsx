@@ -7,6 +7,7 @@ import { Sup } from '../Styled/Sup'
 import { OriginalPrice } from '../Styled/OriginalPrice'
 import { DiscountValue } from '../Styled/DiscountValue'
 import { ProductPrice } from '../Styled/ProductPrice'
+import { useNavigationDispatch } from '../../contexts/navigation'
 
 interface ProductSmallProps {
   product: Product;
@@ -34,20 +35,56 @@ const ProductTitle = styled.h3`
   overflow: hidden;
 `
 
+const Spacer = styled.span`
+width: 8pt;
+`
+
+const ProductPriceWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`
+
 export const ProductSmall: React.FunctionComponent<ProductSmallProps> = ({ product }: ProductSmallProps) => {
   const computedProduct = useComputeProduct(product)
+  const dispatch = useNavigationDispatch()
   return (
-    <Container className="swiper-slide">
+    <Container
+      className="swiper-slide"
+      onClick={
+        (): void => dispatch({
+          type: 'PUSH',
+          payload: {
+            name: 'PRODUCT_DETAIL',
+            payload: {
+              sku: product.sku,
+            }
+          }
+        })}
+    >
       <ImageWrapper>
         <img src={computedProduct.displayImage} />
       </ImageWrapper>
       <ProductTitle>
         {product.displayName}
       </ProductTitle>
-      <ProductPrice>
-        {thoundsandDelimiter(computedProduct.price.sellPrice)}
-        <Sup>đ</Sup>
-      </ProductPrice>
+      <ProductPriceWrapper>
+        <ProductPrice>
+          {thoundsandDelimiter(computedProduct.price.sellPrice)}
+          <Sup>đ</Sup>
+        </ProductPrice>
+        {computedProduct.promotion && (
+            <>
+              <Spacer />
+              <OriginalPrice>
+                {thoundsandDelimiter(computedProduct.promotion.orginalPrice)}
+              </OriginalPrice>
+              <Spacer />
+              <DiscountValue>
+                <span>-{computedProduct.promotion.discountPercent}%</span>
+              </DiscountValue>
+            </>
+          )}
+      </ProductPriceWrapper>
     </Container>
   )
 }
