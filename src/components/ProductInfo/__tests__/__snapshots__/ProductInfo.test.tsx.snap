@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavigationBar NavigationBar renders correctly 1`] = `
+.c8 {
+  top: -.3em;
+  left: .1em;
+}
+
+.c0 {
+  padding: 12pt;
+  background-color: #FFF;
+  border-top: 1px solid #eef1f3;
+}
+
+.c1 {
+  font-size: 17pt;
+  color: #262829;
+}
+
+.c4 {
+  color: #1e75f6;
+}
+
+.c3 {
+  color: #8f9598;
+}
+
+.c5 {
+  background-color: rgb(238,241,243);
+  color: #8f9598;
+  font-size: 12pt;
+  padding: 3pt 8pt;
+  border-radius: 8pt;
+}
+
+.c2 {
+  margin-bottom: 8pt;
+}
+
+.c6 {
+  margin-top: 8pt;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c7 {
+  font-size: 17pt;
+  font-weight: 700;
+  color: #ea341f;
+  margin-bottom: 0;
+}
+
+<div
+  className="c0"
+>
+  <h3
+    className="c1"
+  >
+    Máy tính để bàn - PC Acer AS XC-885 (i5-8400/4GB/1TB HDD/UHD 630/Endless)
+  </h3>
+  <div
+    className="c2"
+  >
+    <span
+      className="c3"
+    >
+      Mã SP: 
+    </span>
+    <span
+      className="c4"
+    >
+      1807564
+    </span>
+  </div>
+  <div>
+    <span
+      className="c5"
+    >
+      Ngừng kinh doanh
+    </span>
+  </div>
+  <div
+    className="c6"
+  >
+    <h3
+      className="c7"
+    >
+      11.890.000
+      <sup
+        className="c8"
+      >
+        đ
+      </sup>
+    </h3>
+  </div>
+</div>
+`;

@@ -32,12 +32,18 @@ export interface ProductImage {
   priority: number;
 }
 
+export interface ProductStatus {
+  publish: boolean;
+  sale: 'ngung_kinh_doanh' | 'hang_ban';
+}
+
 export interface Product {
   sku: string;
   displayName: string;
   price: ProductPrice;
   promotionPrices: Array<ProductPromotionPrice>;
   images: Array<ProductImage>;
+  status: ProductStatus;
 }
 
 export interface SearchResponseExtra {

@@ -5,7 +5,7 @@ import { NavigationBar } from '../../components/NavigationBar'
 import { CartIcon } from '../../components/CartIcon'
 import { ProductNavigationTitle } from '../../components/ProductNavigationTitle'
 import { ProductImages } from '../../components/ProductImages'
-
+import { ProductInfo } from '../../components/ProductInfo'
 interface ProductDetailProps {
   sku: string;
 }
@@ -42,6 +42,7 @@ export const ProductDetail: React.FunctionComponent<ProductDetailProps> = ({ sku
       {product && (
         <Wrapper>
           <ProductImages images={product.images} />
+          <ProductInfo product={product} />
         </Wrapper>
       )}
     </>
