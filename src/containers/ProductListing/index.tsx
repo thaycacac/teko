@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { search, ProductSearchParams, Product } from '../../repositories/products'
 import { NavigationBar } from '../../components/NavigationBar'
 import { useNavigationDispatch } from '../../contexts/navigation'
+import ProductRow from '../../components/ProductRow'
 
-const DummyButton = styled.button`
-  width: 100%;
-  height: 100px;
+const ScrollWrapper = styled.div`
+  overflow-y: auto;
+  height: calc(100% - 44pt);
 `
-
 const InputWrapper = styled.div`
   flex: 1;
   background-color: ${props => props.theme.colors.white};
@@ -35,6 +36,17 @@ const SearchIconWrapper = styled.div`
 
 export const ProductListing: React.FunctionComponent = () => {
   const dispatch = useNavigationDispatch()
+  const [page, setPage] = useState<number>(1)
+  const [displayedProducts, setDisplayedProducts] = useState<Array<Product>>([])
+
+  const loadData = useCallback(async () => {
+    const { result } = await search({ page } as ProductSearchParams)
+    setDisplayedProducts(displayedProducts.concat(result.products))
+  }, [page])
+
+  useEffect(() => {
+    loadData()
+  }, [loadData, page])
   return (
     <>
       <NavigationBar>
@@ -45,20 +57,26 @@ export const ProductListing: React.FunctionComponent = () => {
           <Input placeholder="Nhập tên, mã sản phẩm" />
         </InputWrapper>
       </NavigationBar>
-      <DummyButton
-        onClick={
-          (): void => dispatch({
-            type: 'PUSH',
-            payload: {
-              name: 'PRODUCT_DETAIL',
-              payload: {
-                productId: 'productid',
-              }
-            }
-          })}
-        >
-          Next
-        </DummyButton>
+      <ScrollWrapper>
+        {displayedProducts.map(product => (
+          <ProductRow
+            key={product.sku}
+            onClick={
+              (): void => dispatch({
+                type: 'PUSH',
+                payload: {
+                  name: 'PRODUCT_DETAIL',
+                  payload: {
+                    sku: product.sku,
+                  }
+                }
+              })}
+            product={product}
+          />
+        ))}
+      </ScrollWrapper>
     </>
   )
 }
+
+

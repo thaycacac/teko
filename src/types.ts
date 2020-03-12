@@ -5,6 +5,6 @@ export type ScreenPayload =
   | {
     name: 'PRODUCT_DETAIL';
     payload: {
-      productId: string;
+      sku: string;
     };
   }
