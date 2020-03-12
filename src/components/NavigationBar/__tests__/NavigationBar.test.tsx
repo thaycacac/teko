@@ -17,7 +17,7 @@ describe('NavigationBar', () => {
           Children
         </NavigationBar>
       </ThemeProvider>
-    )
+    ).toJSON()
     expect(tree).toMatchSnapshot()
   })
 

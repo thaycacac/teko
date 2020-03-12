@@ -7,7 +7,6 @@ import { ScrollContainer } from '../../components/ScrollContainer'
 import { useNavigationDispatch } from '../../contexts/navigation'
 import ProductRow from '../../components/ProductRow'
 
-
 const InputWrapper = styled.div`
   flex: 1;
   background-color: ${props => props.theme.colors.white};

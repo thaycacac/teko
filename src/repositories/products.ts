@@ -32,12 +32,40 @@ export interface ProductImage {
   priority: number;
 }
 
+export interface ProductStatus {
+  publish: boolean;
+  sale: 'ngung_kinh_doanh' | 'hang_ban';
+}
+
+export interface ProductAttributeValue {
+  value: string;
+  optionId: number;
+}
+
+export interface ProductAttribute {
+  code: string;
+  values: Array<ProductAttributeValue>;
+}
+
+export interface ProductAttributeGroup {
+  name: string;
+  value: string;
+}
+
+export interface ProductSaleCategory {
+  id: number;
+}
+
 export interface Product {
   sku: string;
   displayName: string;
   price: ProductPrice;
   promotionPrices: Array<ProductPromotionPrice>;
   images: Array<ProductImage>;
+  status: ProductStatus;
+  attributes: Array<ProductAttribute>;
+  attributeGroups: Array<ProductAttributeGroup>;
+  saleCategories: Array<ProductSaleCategory>;
 }
 
 export interface SearchResponseExtra {
@@ -71,5 +99,17 @@ export function search(params: ProductSearchParams): Promise<ProductSearchRespon
       return Promise.reject(problem)
     }
     return Promise.resolve(data as ProductSearchResponse)
+  })
+}
+
+export function get(sku: string): Promise<Product> {
+  return api.get(`/products/${sku}`, {
+    channel: 'pv_online',
+    terminal: 'phongvu',
+  }).then(({ ok, data, problem }) => {
+    if (!ok) {
+      return Promise.reject(problem)
+    }
+    return Promise.resolve((data as any).result.product as Product)
   })
 }

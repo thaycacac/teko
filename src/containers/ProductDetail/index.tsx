@@ -1,61 +1,74 @@
-import React from 'react'
+import React, { useEffect, useCallback, useState } from 'react'
 import styled from 'styled-components'
+import { get, search, Product } from '../../repositories/products'
 import { NavigationBar } from '../../components/NavigationBar'
-import { useNavigationDispatch } from '../../contexts/navigation'
 import { CartIcon } from '../../components/CartIcon'
+import { ProductNavigationTitle } from '../../components/ProductNavigationTitle'
+import { ProductImages } from '../../components/ProductImages'
+import { ProductInfo } from '../../components/ProductInfo'
+import { ProductInfoTabs } from '../../components/ProductInfoTabs'
+import { SimilarProducts } from '../../components/SimilarProducts'
 
-const DummyButton = styled.button`
-  width: 100%;
-  height: 100px;
-`
-const TitleContainer = styled.div`
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  h3, p {
-    margin-bottom: 0;
-  }
-`
+interface ProductDetailProps {
+  sku: string;
+}
 
-const NavigationTitle = styled.h3``
-
-const NavigationSubTitle = styled.p`
-color: ${props => props.theme.colors.tomato};
+const Wrapper = styled.div`
+  overflow-y: auto;
+  height: calc(100% - 44pt);
+  background-color: ${props => props.theme.colors.paleGrey};
 `
 
-export const ProductDetail: React.FunctionComponent = () => {
-  const dispatch = useNavigationDispatch()
+export const ProductDetail: React.FunctionComponent<ProductDetailProps> = ({ sku }: ProductDetailProps) => {
+  const [isLoading, setIsLoading] = useState(false)
+  const [product, setProduct] = useState<Product | undefined>()
+  const [similarProducts, setSimilarProducts] = useState<Array<Product>>([])
+  const fetchProduct = useCallback(async () => {
+    setIsLoading(true)
+    const data = await get(sku)
+    setProduct(data)
+    setIsLoading(false)
+  }, [sku])
+
+  const fetchSimilarProducts = useCallback(async (categoryId: number) => {
+    const { result } = await search({
+      _page: 1,
+      saleCategories: categoryId,
+      _limit: 10,
+    })
+    setSimilarProducts(result.products)
+  }, [])
+
+  useEffect(() => {
+    fetchProduct()
+  }, [sku])
+
+  useEffect(() => {
+    if (product && product.saleCategories.length > 0) {
+      fetchSimilarProducts(product.saleCategories[0].id)
+    }
+  }, [product])
+
   return (
     <>
       <NavigationBar
         variant="secondary"
         rightNode={<CartIcon />}
       >
-        <TitleContainer>
-          <NavigationTitle>
-            Bo vi xu ly
-          </NavigationTitle>
-          <NavigationSubTitle>
-            10.420.000 d
-          </NavigationSubTitle>
-        </TitleContainer>
+        {product && (
+          <ProductNavigationTitle product={product} />
+        )}
       </NavigationBar>
-      <DummyButton
-        onClick={
-          (): void => dispatch({
-            type: 'PUSH',
-            payload: {
-              name: 'PRODUCT_DETAIL',
-              payload: {
-                productId: 'productid',
-              }
-            }
-          })}
-        >
-          Next
-        </DummyButton>
+      {product && (
+        <Wrapper>
+          <ProductImages images={product.images} />
+          <ProductInfo product={product} />
+          <ProductInfoTabs product={product} />
+          {similarProducts.length > 0 && (
+            <SimilarProducts products={similarProducts} />
+          )}
+        </Wrapper>
+      )}
     </>
   )
 
