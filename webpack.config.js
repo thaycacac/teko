@@ -4,7 +4,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   // webpack will take the files from ./src/index
-  entry: './src/index',
+  entry: ['@babel/polyfill', './src/index'],
   // and output it into /dist as bundle.js
   output: {
     path: path.join(__dirname, '/dist'),
