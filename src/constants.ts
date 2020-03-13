@@ -1,1 +1,1 @@
-export const API_URL = 'https://listing.services.teko.vn/api'
+export const API_URL = 'https://listing.stage.tekoapis.net/api'

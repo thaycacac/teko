@@ -45,16 +45,6 @@ module.exports = (env, argv) => {
         },
       ],
     },
-    optimization: {
-      minimize: isEnvProduction,
-      splitChunks: {
-        chunks: 'all',
-        name: false,
-      },
-      runtimeChunk: {
-        name: entrypoint => `runtime-${entrypoint.name}`,
-      },
-    },
     plugins: [
       new HtmlWebpackPlugin({
         template: './src/index.html',
