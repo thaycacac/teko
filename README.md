@@ -1,12 +1,17 @@
-# [Product discovery](https://reactjs.org/) &middot; [![CircleCI Status](https://circleci.com/gh/hieuhani/teko.svg?style=svg)](https://github.com/hieuhani/teko)
+# [Product discovery](https://reactjs.org/) &middot; [![CircleCI Status](https://circleci.com/gh/hieuhani/teko.svg?style=svg)](https://github.com/hieuhani/teko) [![Known Vulnerabilities](https://snyk.io/test/github/hieuhani/teko/badge.svg?targetFile=package.json)](https://snyk.io/test/github/hieuhani/teko?targetFile=package.json)
 
 
 ## Introduction
 This project tends to use as less dependencies as possible.
+
 No state management or router library. Just built-in React features, Hooks and Context to achieve that.
+
 Using `styled-components` for styling and `react-spring` for animation.
+
 Using `swiperjs` to implement mobile touch slider.
+
 Using `lodash.debounce` for handling keyword enter and window sizing handler.
+
 Using `lodash.throttle` for handing infinite scrolling.
 
 Using Typescript to do catch types and type errors, static test in testing trophy.
