@@ -78,3 +78,5 @@ export const ProductDetail: React.FunctionComponent<ProductDetailProps> = ({ sku
   )
 
 }
+
+export default ProductDetail

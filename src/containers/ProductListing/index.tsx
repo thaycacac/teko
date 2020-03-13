@@ -106,3 +106,4 @@ export const ProductListing: React.FunctionComponent = () => {
 }
 
 
+export default ProductListing
