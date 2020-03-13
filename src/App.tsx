@@ -3,6 +3,7 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { NavigationProvider } from './contexts/navigation'
 import { Router } from './Router'
 import { theme } from './theme'
+import { CartProvider } from './contexts/cart'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -65,9 +66,11 @@ const App: React.FunctionComponent = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <NavigationProvider>
-        <Router />
-      </NavigationProvider>
+      <CartProvider>
+        <NavigationProvider>
+          <Router />
+        </NavigationProvider>
+      </CartProvider>
     </ThemeProvider>
   )
 }

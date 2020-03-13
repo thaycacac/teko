@@ -18,6 +18,19 @@ exports[`CartIcon CartIcon renders correctly 1`] = `
   justify-content: center;
   border: none;
   background-color: transparent;
+  position: relative;
+}
+
+.c1 {
+  background-color: #f58400;
+  color: #FFF;
+  min-width: 13pt;
+  height: 13pt;
+  border-radius: 50%;
+  position: absolute;
+  top: -5pt;
+  right: -5pt;
+  font-size: 10pt;
 }
 
 <button
@@ -27,5 +40,10 @@ exports[`CartIcon CartIcon renders correctly 1`] = `
     src="/public/images/CartOutlined.png"
     srcSet="/public/images/CartOutlined@2x.png 2x, /public/images/CartOutlined@3x.png 3x"
   />
+  <span
+    className="c1"
+  >
+    1
+  </span>
 </button>
 `;

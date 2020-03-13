@@ -5,11 +5,11 @@ export interface NavigationProviderProps {
   children: React.ReactNode;
 }
 
-interface State {
+export interface State {
   stack: Array<ScreenPayload>;
 }
 
-type Action =
+export type Action =
   | { type: 'PUSH'; payload: ScreenPayload }
   | { type: 'POP' };
 

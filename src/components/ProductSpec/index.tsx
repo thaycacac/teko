@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ProductAttributeGroup, ProductAttributeValue } from '../../repositories/products'
+import { ProductAttributeGroup } from '../../repositories/products'
 import styled from 'styled-components'
 
 interface ProductSpecProps {
@@ -16,7 +16,6 @@ padding: 12pt;
 
 const Table = styled.table`
 width: 100%;
-
 
 tr {
   td {

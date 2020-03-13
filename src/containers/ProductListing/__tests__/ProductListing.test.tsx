@@ -1,14 +1,17 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { ThemeProvider } from 'styled-components'
-import { CartIcon } from '..'
+import { ProductListing } from '..'
 import { theme } from '../../../theme'
+import { NavigationProvider } from '../../../contexts/navigation'
 
-describe('CartIcon', () => {
-  test('CartIcon renders correctly', () => {
+describe('SimilarProducts', () => {
+  test('SimilarProducts renders correctly', () => {
     const tree = renderer.create(
       <ThemeProvider theme={theme}>
-        <CartIcon totalItems={1} />
+        <NavigationProvider>
+          <ProductListing />
+        </NavigationProvider>
       </ThemeProvider>
     ).toJSON()
     expect(tree).toMatchSnapshot()

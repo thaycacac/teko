@@ -1,9 +1,10 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { ThemeProvider } from 'styled-components'
-import { ProductInfo } from '..'
+import { SimilarProducts } from '..'
 import { theme } from '../../../theme'
 import { Product } from '../../../repositories/products'
+import { NavigationProvider } from '../../../contexts/navigation'
 
 const product: Product = {
   displayName: 'Máy tính để bàn - PC Acer AS XC-885 (i5-8400/4GB/1TB HDD/UHD 630/Endless)',
@@ -31,14 +32,18 @@ const product: Product = {
   attributes: [],
 }
 
-describe('ProductInfo', () => {
-  test('ProductInfo renders correctly', () => {
+const props = {
+  products: [product],
+}
+describe('SimilarProducts', () => {
+  test('SimilarProducts renders correctly', () => {
     const tree = renderer.create(
       <ThemeProvider theme={theme}>
-        <ProductInfo product={product} />
+        <NavigationProvider>
+          <SimilarProducts {...props} />
+        </NavigationProvider>
       </ThemeProvider>
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })
-
 })

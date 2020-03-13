@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { ThemeProvider } from 'styled-components'
-import { ProductInfo } from '..'
+import { ProductInfoTabs } from '..'
 import { theme } from '../../../theme'
 import { Product } from '../../../repositories/products'
 
@@ -30,15 +30,13 @@ const product: Product = {
   attributeGroups: [],
   attributes: [],
 }
-
-describe('ProductInfo', () => {
-  test('ProductInfo renders correctly', () => {
+describe('ProductInfoTabs', () => {
+  test('ProductInfoTabs renders correctly', () => {
     const tree = renderer.create(
       <ThemeProvider theme={theme}>
-        <ProductInfo product={product} />
+        <ProductInfoTabs product={product} />
       </ThemeProvider>
     ).toJSON()
     expect(tree).toMatchSnapshot()
   })
-
 })

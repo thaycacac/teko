@@ -9,6 +9,7 @@ interface ProductInfoTabsProps {
 interface TabProps {
   active?: boolean;
 }
+
 const Container = styled.div`
   background-color: ${props => props.theme.colors.white};
   margin-bottom: 8pt;
