@@ -11,12 +11,10 @@
     "check-types": "tsc",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\"",
-    "test": "jest",
-    "deploy": "gh-pages -d dist"
+    "test": "jest"
   },
   "dependencies": {
     "apisauce": "^1.1.1",
-    "gh-pages": "^2.2.0",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "react": "^16.13.0",
