@@ -17,4 +17,3 @@ ESLint and Prettier are used to make sure code quality.
 1.  Clone this repo using `git clone https://github.com/hieuhani/teko.git`
 2.  Run `yarn install` to install dependencies
 3.  Run `yarn test` to verify
-
