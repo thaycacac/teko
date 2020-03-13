@@ -1,8 +1,7 @@
 import React, { Children, useRef, useEffect, cloneElement, ReactElement } from 'react'
-import { Swiper as SwiperLib, SwiperOptions, SelectableElement, Pagination } from 'swiper/js/swiper.esm'
+import SwiperLib, { SwiperOptions, SelectableElement } from 'swiper'
 
-// Custom Swiper build https://swiperjs.com/api/#custom-build
-SwiperLib.use([Pagination])
+// TODO: Custom Swiper build https://swiperjs.com/api/#custom-build
 
 type Maybe<T> = T | null;
 
