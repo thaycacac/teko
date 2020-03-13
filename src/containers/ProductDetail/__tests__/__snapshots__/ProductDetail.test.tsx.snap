@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SimilarProducts SimilarProducts renders correctly 1`] = `
+.c0 {
+  height: 44pt;
+  background: #FFF;
+  border-bottom: 1px solid #eef1f3;
+  padding: 8pt 11pt;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1 {
+  width: 24pt;
+  height: 24pt;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-right: 11pt;
+  border: none;
+  background-color: transparent;
+}
+
+.c2 {
+  width: 24pt;
+  height: 24pt;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  position: relative;
+}
+
+<div
+  className="c0"
+>
+  <button
+    className="c1"
+    onClick={[Function]}
+  >
+    <img
+      src="/public/images/ArrowBackBlack.png"
+      srcSet="/public/images/ArrowBackBlack@2x.png 2x, /public/images/ArrowBackBlack@3x.png 3x"
+    />
+  </button>
+  <button
+    className="c2"
+  >
+    <img
+      src="/public/images/CartOutlined.png"
+      srcSet="/public/images/CartOutlined@2x.png 2x, /public/images/CartOutlined@3x.png 3x"
+    />
+  </button>
+</div>
+`;

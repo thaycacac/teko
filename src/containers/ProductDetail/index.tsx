@@ -9,7 +9,7 @@ import { ProductInfo } from '../../components/ProductInfo'
 import { ProductInfoTabs } from '../../components/ProductInfoTabs'
 import { SimilarProducts } from '../../components/SimilarProducts'
 import { AddToCartBar } from '../../components/AddToCartBar'
-import { useCartState, CartState } from '../../contexts/cart'
+import { useCartState } from '../../contexts/cart'
 
 interface ProductDetailProps {
   sku: string;
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 `
 
 export const ProductDetail: React.FunctionComponent<ProductDetailProps> = ({ sku }: ProductDetailProps) => {
-  const [isLoading, setIsLoading] = useState(false)
+  const [, setIsLoading] = useState(false)
   const cartState = useCartState()
   const [product, setProduct] = useState<Product | undefined>()
   const [similarProducts, setSimilarProducts] = useState<Array<Product>>([])
@@ -57,7 +57,7 @@ export const ProductDetail: React.FunctionComponent<ProductDetailProps> = ({ sku
     <>
       <NavigationBar
         variant="secondary"
-        rightNode={<CartIcon />}
+        rightNode={<CartIcon totalItems={cartState.totalItems} />}
       >
         {product && (
           <ProductNavigationTitle product={product} />

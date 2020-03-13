@@ -25,21 +25,33 @@ const Container = styled.div`
 
 export const AddToCartBar: React.FunctionComponent<AddToCartBarProps> = ({ cartState, product }: AddToCartBarProps) => {
   const dispatch = useCartDispatch()
+  const increateQuantity = useCallback(() => (
+    dispatch({
+      type: 'ADD',
+      payload: product,
+    })
+  ), [product])
+  const decreaseQuantity = useCallback(() => (
+    dispatch({
+      type: 'DELETE',
+      payload: product,
+    })
+  ), [product])
+  const currentCart = cartState.cart[product.sku]
   const handleAddToCart = useCallback(() => {
-    if (cartState.totalItems > 0) {
-      console.log('Go to shopping cart')
+    if (currentCart && cartState.totalItems > 0) {
+      alert('Go to shopping cart')
     } else {
-      dispatch({
-        type: 'ADD',
-        payload: product,
-      })
+      increateQuantity()
     }
   }, [cartState, product])
-  const currentCart = cartState.cart[product.sku]
   return (
     <Container>
       {currentCart && (
         <Stepper
+          increase={increateQuantity}
+          value={currentCart.quantity}
+          decrease={decreaseQuantity}
         />
       )}
       <AddToCartButton

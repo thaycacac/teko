@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductNavigationTitle ProductNavigationTitle renders correctly 1`] = `
+.c3 {
+  top: -.3em;
+  left: .1em;
+}
+
+.c0 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0 h5,
+.c0 p {
+  margin-bottom: 0;
+}
+
+.c1 {
+  font-size: 13pt;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200pt;
+}
+
+.c2 {
+  color: #ea341f;
+}
+
+<div
+  className="c0"
+>
+  <h5
+    className="c1"
+  >
+    Máy tính để bàn - PC Acer AS XC-885 (i5-8400/4GB/1TB HDD/UHD 630/Endless)
+  </h5>
+  <p
+    className="c2"
+  >
+    11.890.000
+    <sup
+      className="c3"
+    >
+      đ
+    </sup>
+  </p>
+</div>
+`;

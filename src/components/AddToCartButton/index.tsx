@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { CartState } from 'contexts/cart'
+import { CartState } from '../../contexts/cart'
 import { thoundsandDelimiter } from '../../helpers/number'
+import { Sup } from '../Styled/Sup'
 
 interface AddToCartButtonProps {
   cartState: CartState;
@@ -18,7 +19,7 @@ const Button = styled.button`
   border-radius: 8pt;
   color: ${props => props.theme.colors.white};
   padding: 8pt;
-  max-width: 230pt;
+  max-width: 250pt;
   justify-content: space-between;
   span {
     margin-left: 50pt;
@@ -30,7 +31,11 @@ export const AddToCartButton: React.FunctionComponent<AddToCartButtonProps> = ({
   return (
     <Button onClick={onClick}>
       <img src="/public/images/AddToCart.png" srcSet="/public/images/AddToCart@2x.png 2x, /public/images/AddToCart@3x.png 3x" />
-      <span>{cartState.totalValue > 0 ? thoundsandDelimiter(cartState.totalValue) : 'Add To Cart'}</span>
+      {cartState.totalValue > 0 ? (
+        <span>{thoundsandDelimiter(cartState.totalValue)}<Sup>đ</Sup></span>
+      ) : (
+        <span>Add To Cart</span>
+      )}
     </Button>
   )
 }

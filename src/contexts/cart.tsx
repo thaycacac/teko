@@ -12,11 +12,11 @@ export interface Cart {
   };
 }
 
-interface State {
+export interface State {
   cart: Cart;
 }
 
-type Action =
+export type Action =
   | { type: 'ADD'; payload: Product }
   | { type: 'DELETE'; payload: Product };
 
@@ -36,15 +36,40 @@ const CartDispatchContext = React.createContext<Dispatch | undefined>(undefined)
 
 export function cartReducer(state: State, action: Action): State {
   switch (action.type) {
-    case 'ADD':
-      console.log(action.payload)
-      return {
-       ...state,
-      }
-    case 'DELETE':
+    case 'ADD': {
+      const product = action.payload
       return {
         ...state,
+        cart: Object.assign({}, state.cart, {
+          [product.sku]: {
+            price: product.price.sellPrice,
+            quantity: state.cart[product.sku] ? state.cart[product.sku].quantity + 1 : 1,
+          }
+        })
       }
+    }
+    case 'DELETE': {
+      const product = action.payload
+      if (!state.cart[product.sku]) {
+        return state
+      }
+      if (state.cart[product.sku].quantity > 1) {
+        return {
+          ...state,
+          cart: Object.assign({}, state.cart, {
+            [product.sku]: {
+              price: product.price.sellPrice,
+              quantity: state.cart[product.sku].quantity - 1,
+            }
+          })
+        }
+      }
+      const { [product.sku]: value, ...cart } = state.cart
+      return {
+        ...state,
+        cart,
+      }
+    }
     default:
       throw new Error()
   }

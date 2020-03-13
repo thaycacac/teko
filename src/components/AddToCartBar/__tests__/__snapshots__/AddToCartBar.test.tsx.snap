@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddToCartBar AddToCartBar renders correctly 1`] = `
+.c1 {
+  border: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: auto;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: rgb(232,32,32);
+  background: linear-gradient(90deg,rgba(232,32,32,1) 0%,#f5471e 100%);
+  border-radius: 8pt;
+  color: #FFF;
+  padding: 8pt;
+  max-width: 250pt;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c1 span {
+  margin-left: 50pt;
+  font-size: 15pt;
+}
+
+.c0 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8pt;
+  background-color: #FFF;
+  z-index: 99999;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+<div
+  className="c0"
+>
+  <button
+    className="c1"
+    onClick={[Function]}
+  >
+    <img
+      src="/public/images/AddToCart.png"
+      srcSet="/public/images/AddToCart@2x.png 2x, /public/images/AddToCart@3x.png 3x"
+    />
+    <span>
+      Add To Cart
+    </span>
+  </button>
+</div>
+`;

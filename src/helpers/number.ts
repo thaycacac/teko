@@ -2,5 +2,5 @@ export function thoundsandDelimiter(number: number): string {
   if (!number) {
     return ''
   }
-  return number.toLocaleString('vi-VN')
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 }
